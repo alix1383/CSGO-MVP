@@ -3,6 +3,8 @@ Custom MVP anthem for CSGO, with clientprefs support.
 
 https://forums.alliedmods.net/showthread.php?p=2514835
 
+## Play Mvp When Salect Added By [Hamiæ#8186](https://github.com/Sples1) & Alix
+
 ## Commands
 - `sm_mvp` - Select your MVP anthem.
 - `sm_mvpvol` - Change MVP anthem volume.

@@ -31,7 +31,7 @@
 	}	
 	"MVP Menu Title"
 	{
-		"en"			"Select Your Custom MVP Anthem"
+		"en"			"Select Your Custom MVP Anthem By Alix"
 		"zho"			"選擇你的MVP音樂"
 		"pt"			"Selecione seu MVP"
 	}	

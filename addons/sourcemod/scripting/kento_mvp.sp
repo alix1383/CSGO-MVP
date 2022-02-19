@@ -13,14 +13,16 @@
 //░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░
 //░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-//***************NYAN CAT****************
+//***************NYAN CAT [so cute :)] ****************
 
 #include <sourcemod>
 #include <clientprefs>
 #include <sdktools>
 #include <sdkhooks>
 #include <kento_csgocolors>
+#tryinclude <updater>
 
+#define UPDATE_URL "https://raw.githubusercontent.com/alix1383/CSGO-MVP/master/addons/sourcemod/updatefile-mvp.txt"
 #define MAX_MVP_COUNT 1000
 
 #pragma newdecls required
@@ -48,7 +50,7 @@ public Plugin myinfo =
 {
 	name = "[CS:GO] Custom MVP Anthem",
 	author = "Kento",
-	version = "1.11",
+	version = "1.1.3",
 	description = "Custom MVP Anthem",
 	url = "https://github.com/rogeraabbccdd/csgo_mvp"
 };
@@ -65,7 +67,7 @@ public void OnPluginStart()
 	mvp_cookie = RegClientCookie("mvp_name", "Player's MVP Anthem", CookieAccess_Private);
 	mvp_cookie2 = RegClientCookie("mvp_vol", "Player MVP volume", CookieAccess_Private);
 
-	Cvar_Vol = CreateConVar("mvp_defaultvol", "0.8", "Default MVP anthem volume.", FCVAR_NOTIFY, true, 0.0, true, 1.0);
+	Cvar_Vol = CreateConVar("mvp_defaultvol", "0.5", "Default MVP anthem volume.", FCVAR_NOTIFY, true, 0.0, true, 1.0);
 	Cvar_ShowMode = CreateConVar("mvp_no_acces_show_mode", "1", "How to show the mvp(s) to clients that doesn't have acces to them? 1 = Don't show in the menu. 2 = Show but they won't be able to select the item", FCVAR_NOTIFY, true, 0.0, true, 1.0);
 	Cvar_Vol.AddChangeHook(OnConVarChanged);
 	Cvar_ShowMode.AddChangeHook(OnConVarChanged);
@@ -78,6 +80,18 @@ public void OnPluginStart()
 	for(int i = 0; i < MAX_MVP_COUNT; i++)
 	{
 		delete g_hMVPSteamIds[i];
+	}
+	if (LibraryExists("updater"))
+	{
+		Updater_AddPlugin(UPDATE_URL);
+	}
+}
+
+public void OnLibraryAdded(const char[] name)
+{
+	if (StrEqual(name, "updater"))
+	{
+		Updater_AddPlugin(UPDATE_URL);
 	}
 }
 
@@ -375,7 +389,7 @@ public int MVPMenuHandler(Menu menu, MenuAction action, int client,int param)
 			NameMVP[client] = "";
 			SetClientCookie(client, mvp_cookie, "");
 		}
-        else if(StrEqual(mvp_name, "random"))
+		else if(StrEqual(mvp_name, "random"))
         {
             Selected[client] = -1; // We use -1 as a unique id for "random" selection
             CPrintToChat(client, "%T", "Selected Random", client);

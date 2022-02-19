@@ -1,0 +1,17 @@
+"Updater"
+{
+	"Information"
+	{
+		"Version"
+		{
+			"Latest"	"1.1.3"
+		}
+	}
+	"Files"
+	{
+		"Plugin"	"Path_SM/plugins/weapons.smx"
+		"Plugin"	"Path_SM/configs/kento_mvp.cfg"
+		"Plugin"	"Path_SM/translations/kento.mvp.phrases.txt"
+		"Source"	"Path_SM/scripting/kento_mvp.sp"
+	}
+}
